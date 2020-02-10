@@ -53,8 +53,15 @@ the slowest results. All between 0.030-0.035. Doubles were the measure I used in
  slower than the doubles I used in mine.
 
  Part 4:
+I was unable to figure out how to access the memory used by the code, but I did extract the time for each.
+ I used the time function in Linux, to get the following real, user, and sys times for size of 1048576 and iterations = 7.
 
- 
+
+Python: real (2m07.037s), user (2m04.713s), sys(0m0.566s)
+C++: real (0m34.300s), user (0m35.429s), sys (0m0.489s)
+
+It becomes clear that python uses much more real and user times while
+they have similar sys times.
 
 
 
