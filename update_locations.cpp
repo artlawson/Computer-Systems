@@ -25,26 +25,14 @@ std::vector<double> generate_random_vector(int size, float bound) //make size an
         return vect;
     }
 
-////////tested function below//////////
-//std::default_random_engine generator;
-//std::uniform_real_distribution<double> distribution(-10.0,10.0);
-
- // for (int i=0; i< 10; ++i) {
-   // double number = distribution(generator);
-    //std::cout<<number<<std::endl;
-   
-
-
-/////////
-
 
 // Update position by velocity, one time-step
-void update_coords(std::vector<double> xs, 
-                   std::vector<double> ys, 
-                   std::vector<double> zs, 
-                   std::vector<double> vx, 
-                   std::vector<double> vy, 
-                   std::vector<double> vz) {
+void update_coords( std::vector<double> &xs, 
+                   std::vector<double> &ys, 
+                   std::vector<double> &zs, 
+                   const std::vector<double> &vx, 
+                   const std::vector<double> &vy, 
+                   const std::vector<double> &vz) {
    
     for (unsigned i = 0; i < xs.size(); i++){
         xs[i] = xs[i] + vx[i];
@@ -54,44 +42,27 @@ void update_coords(std::vector<double> xs,
         }
 
     }
-void run(int itter,std::vector<double> xs, 
-                   std::vector<double> ys, 
-                   std::vector<double> zs, 
-                   std::vector<double> vx, 
-                   std::vector<double> vy, 
-                   std::vector<double> vz ){
+void run(int itter,std::vector<double> &xs, 
+                   std::vector<double> &ys, 
+                   std::vector<double> &zs, 
+                   const std::vector<double> &vx, 
+                   const std::vector<double> &vy, 
+                   const std::vector<double> &vz ){
   for (int i = 0; i<itter; i++){
     update_coords(xs, ys, zs, vx, vy, vz);}
 
 
   }
 int main () {
-//if (argc!= 3){
 
 
- //   std::cout<<"Required arguments: vector_length(N) and iterations_num(M)"<<std::endl;
- //   exit (EXIT_FAILURE);
-
- //   }
-
-//int size = static_cast<unsigned>(std::string(argv[1]));
-//int iters =static_cast<unsigned>(std::string(argv[2]));
-
-//std::string arg = argv[1];
-int size = 256;
-
-//std::string arg_1 = argv[2];
-int itters = 1000000;
+const int size = 256; //CHANGE SIZE HERE
+std::cout<<size<<std::endl;
+const int itters = 100000; //CHANGE ITERATIONS HERE
 
 
 
-   
-
-
-////////////////////////////////////////random.seed(size)
-//AJ3 currently working here
-
-constexpr float bound = 1000.0;
+const float bound = 1000.0;
 
 
 std::vector<double> xs = generate_random_vector(size, bound);
@@ -107,8 +78,7 @@ auto t2 = std::chrono::high_resolution_clock::now();
 
 double duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
 
-duration = ((duration * 1000000) * 1000000) / size * itters;
-
+duration = duration / (size * itters);
 
 double checksum = accumulate(xs.begin(),xs.end(),0) +
                   accumulate(ys.begin(),ys.end(),0) +
