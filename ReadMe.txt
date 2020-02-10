@@ -1,7 +1,5 @@
 #ReadMe.txt
 
-a. Explain in your README.md file how many iterations you picked at different sizes and why. There is no single correct answer here, I just want to see your reasoning. b. Explain how you picked a single number from repeated measurements and justify it. There is no single correct answer here either. c. Plot a line graph of mean update time per coordinate as a function of total no. of objects (first parameter). You can use Excel or other GUIs, but it's best to stay in the Linux environment. I recommend learning how to use the "gnuplot" tool, which is both powerful and relatively straightforward, especially with text inputs. Check out this quick guide
-
 Part 1:
 
 a.)
@@ -63,6 +61,13 @@ C++: real (0m34.300s), user (0m35.429s), sys (0m0.489s)
 It becomes clear that python uses much more real and user times while
 they have similar sys times.
 
+
+Bugs:
+
+The biggest bug I have encountered was figuring out how to speed up my c++ code
+once I was done. I tried using pointers but that made a very minimsl difference.
+Once I used more references and const, things got a lot faster (from 10x to 100x)
+when compared to python.
 
 
 
